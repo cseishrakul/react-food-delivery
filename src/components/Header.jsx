@@ -30,8 +30,6 @@ const Header = () => {
         <Link to="/" className="flex items-center gap-2">
           <img src={Logo} className="w-8 object-cover" alt="Logo" />
           <p className="text-headingColor text-xl font-bold">City</p>
-          <p className="text-headingColor text-xl font-bold">City</p>
-          <p className="text-headingColor text-xl font-bold">City</p>
         </Link>
         <div className="flex items-center gap-8">
           <ul className="flex items-center gap-8">
