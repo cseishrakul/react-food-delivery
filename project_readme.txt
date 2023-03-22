@@ -96,6 +96,70 @@
                     user: providerData[0],
                 });
 
-        9.6: fgfgfgf
+        9.6: after login in navbar if we want to show login users pic then in navbar img tag src: {user ? user.photoURL : defaultImage};
+        9.7: after login if we want to save data even after login as well then->
+            
+            9.7.1: in 8.5 functions after dispatch lets have->
+                localStorage.setItem('user',JSON.stringify(providerData[0])); [it will collect user info in localStorage]
+            
+            9.7.2: In src folder lets have another folder called utlis and inside this lets have a file called fetchLocalStoargeData.js->
+                export const fetchUser = () => {
+                const userInfo =
+                    localStorage.getItem("user") !== "undefined"
+                    ? JSON.parse(localStorage.getItem("user"))
+                    : localStorage.clear();
 
-        9.7:gfgfgfgfg
+                return userInfo;
+                };
+
+            9.7.3: Then in context folder initialState.js file->
+                import { fetchUser } from "../utils/fetchLocalStroageData"
+                const userInfo = fetchUser();
+                export const initialState = {
+                    user: userInfo,
+                }
+
+            * This will save save user info even after reload as well;
+        
+        9.8: even after 9.7 as well if anyone click in user profile image they will see login option.To close that=>
+            9.8.1: inside 8.5 function lets have if statement and in if statement lets have all the code of 8.5 function->
+                if(!user){
+                    code of 8.5 function;
+                }
+
+        9.9: User profile pic onClick if we wanna have a dropdown then:
+            9.9.1: in navbar inside a div lets have some link;
+            9.9.2: in header funtion after useStateValue line lets have->
+                const [isMenu, setisMenu] = useState(false);
+            9.9.3: after 9.8.1 if statement in else{
+                setisMenu(!isMenu);
+            }
+
+            9.9.4: lets wrap 9.9.1 div ->
+            {
+                isMenu && (
+                    9.9.1 div
+                )
+            }
+
+            9.9.5: in dropdown if we have any link which can only seen by admin then lets wrap this link with->
+            {
+                user && user.email == "admin@email" && (
+                    Link tag
+                )
+            }
+        9.10: Lets responsive for mobile device and make logout option for user->
+            9.10.1: for that lets have onClick in logout link.=>
+                <p onClick={logout}>
+                  Logout <MdLogout />
+                </p>
+
+            9.10.2: and lets make this function->
+                const logout = () => {
+                    setisMenu(false)
+                    localStorage.clear()
+                    dispatch({
+                    type: actionType.SET_USER,
+                    user: null
+                    })
+                }
