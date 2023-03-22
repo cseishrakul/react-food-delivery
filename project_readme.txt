@@ -95,3 +95,5 @@
                     type: actionType.SET_USER,
                     user: providerData[0],
                 });
+
+        9.6: 
