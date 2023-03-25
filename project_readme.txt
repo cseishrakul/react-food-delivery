@@ -163,3 +163,5 @@
                     user: null
                     })
                 }
+
+    10. Lets Do Header Part with responsive mode..
