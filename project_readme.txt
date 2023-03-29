@@ -163,5 +163,64 @@
                     user: null
                     })
                 }
+            
+            9.10.3: and lets this function inside createItem Link->p tag:
+                    onClick={() => setisMenu(false)} && also add this inside every li tag of mobile device;
 
     10. Lets Do Header Part with responsive mode..
+
+    Lets Create CreateContainer part 
+
+    11. Lets make CreateContainer component;
+    12. Inside this component before return lets have->
+        const [title, setTitle] = useState("");
+        const [calories, setCalories] = useState("");
+        const [price, setPrice] = useState("");
+        const [category, setCategory] = useState(null);
+        const [imageAsset, setImageAsset] = useState(null);
+        const [fields, setFields] = useState(false);
+        const [alertStatus, setAlertStatus] = useState("danger");
+        const [msg, setMsg] = useState(null);
+        const [isLoading, setIsLoading] = useState(false);
+
+        for change the states;
+    
+    13. Lets have some input fields in this component for adding title image category of products;
+    14. utils->data.js lets have ->
+        export const categories = [
+            {
+                id: 1,
+                name: "Chicken",
+                urlParamName: "chicken"
+            },
+            {
+                id: 2,
+                name: "Currry",
+                urlParamName: "curry"
+            },
+            {
+                id: 3,
+                name: "Rice",
+                urlParamName: "rice"
+            },
+            {
+                id: 4,
+                name: "Fish",
+                urlParamName: "fish"
+            },
+            {
+                id: 5,
+                name: "Fruits",
+                urlParamName: "fruits"
+            },
+            {
+                id: 6,
+                name: "Icecreams",
+                urlParamName: "icecreams"
+            },
+            {
+                id: 7,
+                name: "Soft Drinks",
+                urlParamName: "drinks"
+            },
+        ];->This all are categories.Lets use this all categories inside select tag to select the category;
