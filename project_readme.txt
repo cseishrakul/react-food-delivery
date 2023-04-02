@@ -224,3 +224,8 @@
                 urlParamName: "drinks"
             },
         ];->This all are categories.Lets use this all categories inside select tag to select the category;
+
+
+    15. Lets import data in firebase cloud firestore of create Item:
+        title,price,category,image
+        

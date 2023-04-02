@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import { Header, MainContainer, CreateContainer } from "./components";
 
 const App = () => {
+  
   return (
     <AnimatePresence mode="wait">
       <div className="w-screen h-auto flex flex-col bg-primary">
