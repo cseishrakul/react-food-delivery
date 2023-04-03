@@ -228,4 +228,7 @@
 
     15. Lets import data in firebase cloud firestore of create Item:
         title,price,category,image
-        
+
+    16. Lets fetch the data from firebase with reducer and show them in main container using filter and map;
+
+    17. 
