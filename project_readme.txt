@@ -231,4 +231,6 @@
 
     16. Lets fetch the data from firebase with reducer and show them in main container using filter and map;
 
-    17. 
+    17. Lets create menucontainer.jsx in components for menu item.And call it in MainContainer.
+        17.1: Lets fetch all category from utils->data.js as a menu item.
+        17.2: Lets have onClick changable useState option for change menu item while click on each item 
