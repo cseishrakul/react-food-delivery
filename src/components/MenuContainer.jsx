@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { IoFastFood } from "react-icons/io5";
 import { categories } from "../utils/data";
 import { motion } from "framer-motion";
+import RowContainer from "./RowContainer";
+import {useStateValue} from '../context/StateProvider';
 
 const MenuContainer = () => {
   const [filter, setFilter] = useState("chicken");
+  const [{ foodItems }, dispatch] = useStateValue();
 
   return (
     <section className="w-full my-6" id="menu">
@@ -16,12 +19,12 @@ const MenuContainer = () => {
           {categories &&
             categories.map((category) => (
               <motion.div
-                whileTap={{scale:0.75}}
+                whileTap={{ scale: 0.75 }}
                 key={category.id}
                 className={`group ${
                   filter === category.urlParamName ? "bg-red-600" : "bg-white"
                 } w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-600 `}
-                onClick={()=>setFilter(category.urlParamName)}
+                onClick={() => setFilter(category.urlParamName)}
               >
                 <div
                   className={`w-10 h-10 rounded-full ${
@@ -48,6 +51,12 @@ const MenuContainer = () => {
                 </p>
               </motion.div>
             ))}
+        </div>
+        <div className="w-full">
+          <RowContainer
+            flag={false}
+            data={foodItems?.filter((n) => n.category == filter)}
+          />
         </div>
       </div>
     </section>
