@@ -14,7 +14,7 @@ import { useState } from "react";
 const Header = () => {
   const firebaseAuth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
   const [isMenu, setisMenu] = useState(false);
   const login = async () => {
     if (!user) {
@@ -30,6 +30,12 @@ const Header = () => {
       setisMenu(!isMenu);
     }
   };
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow: !cartShow,
+    });
+  };
   const logout = () => {
     setisMenu(false);
     localStorage.clear();
@@ -38,6 +44,9 @@ const Header = () => {
       user: null,
     });
   };
+
+  
+
   return (
     <header className="fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary">
       {/* Desktop & Tablet */}
@@ -66,11 +75,16 @@ const Header = () => {
               Service
             </li>
           </motion.ul>
-          <div className="relative flex items-center justify-center cursor-pointer">
+          <div
+            className="relative flex items-center justify-center cursor-pointer"
+            onClick={showCart}
+          >
             <MdShoppingBasket className="text-textColor text-2xl" />
-            <div className="absolute -top-1 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
-              <p className="text-xs text-white font-semibold">2</p>
-            </div>
+            {cartItems && cartItems.length > 0 && (
+              <div className="absolute -top-1 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
+                <p className="text-xs text-white font-semibold">{cartItems.length}</p>
+              </div>
+            )}
           </div>
           <div className="relative">
             <motion.img
@@ -89,7 +103,10 @@ const Header = () => {
               >
                 {user && user.email == "ishrak236@gmail.com" && (
                   <Link to={"/createItem"}>
-                    <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all-duration-100 ease-in-out text-textColor text-base"  onClick={()=>setisMenu(false)}>
+                    <p
+                      className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all-duration-100 ease-in-out text-textColor text-base"
+                      onClick={() => setisMenu(false)}
+                    >
                       New Item <MdAdd />
                     </p>
                   </Link>
@@ -108,11 +125,16 @@ const Header = () => {
 
       {/* Mobile */}
       <div className="flex items-center justify-between md:hidden w-full h-full">
-        <div className="relative flex items-center justify-center cursor-pointer">
+        <div
+          className="relative flex items-center justify-center cursor-pointer"
+          onClick={showCart}
+        >
           <MdShoppingBasket className="text-textColor text-2xl" />
-          <div className="absolute -top-1 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
-            <p className="text-xs text-white font-semibold">2</p>
-          </div>
+          {cartItems && cartItems.length > 0 && (
+              <div className="absolute -top-1 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
+                <p className="text-xs text-white font-semibold">{cartItems.length}</p>
+              </div>
+            )}
         </div>
 
         <Link to="/" className="flex items-center gap-2">
@@ -143,16 +165,28 @@ const Header = () => {
                 </Link>
               )}
               <ul className="flex flex-col">
-                <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100" onClick={()=>setisMenu(false)}>
+                <li
+                  className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100"
+                  onClick={() => setisMenu(false)}
+                >
                   Home
                 </li>
-                <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100" onClick={()=>setisMenu(false)}>
+                <li
+                  className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100"
+                  onClick={() => setisMenu(false)}
+                >
                   Menu
                 </li>
-                <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100" onClick={()=>setisMenu(false)}>
+                <li
+                  className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100"
+                  onClick={() => setisMenu(false)}
+                >
                   About Us
                 </li>
-                <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100" onClick={()=>setisMenu(false)}>
+                <li
+                  className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer px-4 py-2 hover:bg-slate-100"
+                  onClick={() => setisMenu(false)}
+                >
                   Service
                 </li>
               </ul>

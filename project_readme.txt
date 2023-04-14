@@ -238,4 +238,4 @@
 
     
     18. Let make cartcontainer make cart design and call it in MainContainer;
-    19.
+    19. Lets Add item on cart.
